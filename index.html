@@ -12,16 +12,16 @@
 
 <style>
 :root {
-  --primary: #1B6B5A;
-  --primary-hover: #145849;
+  --primary: #1A5C4E;
+  --primary-hover: #13493E;
   --secondary: #2C3E50;
   --accent: #D4A853;
   --bg: #FAFAF7;
   --surface: #F2F1EC;
   --border: #D9D6CE;
   --text: #2A2A28;
-  --text-sec: #6B6B67;
-  --text-faint: #A3A39E;
+  --text-sec: #585854;
+  --text-faint: #8A8A85;
   --success: #3D8B37;
   --warning: #C4841D;
   --error: #B44040;
@@ -149,8 +149,8 @@ section:last-of-type { border-bottom: none; }
 .problem-highlight {
   margin-top: 40px;
   padding: 28px 32px;
-  background: var(--surface);
-  border-left: 4px solid var(--accent);
+  background: #EDE9E0;
+  border-left: 5px solid var(--accent);
   border-radius: 0 8px 8px 0;
 }
 
@@ -165,9 +165,10 @@ section:last-of-type { border-bottom: none; }
 .problem-highlight .source {
   font-family: var(--mono);
   font-size: 12px;
-  color: var(--text-faint);
+  color: var(--text-sec);
   margin-top: 12px;
   font-style: normal;
+  font-weight: 500;
 }
 
 /* ===== LAYERS GRID ===== */
@@ -352,18 +353,20 @@ section:last-of-type { border-bottom: none; }
 
 .cta-btn {
   display: inline-block;
-  font-family: var(--body);
-  font-weight: 600;
-  font-size: 16px;
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: #fff;
-  background: var(--primary);
-  padding: 14px 36px;
-  border-radius: 8px;
+  background: var(--secondary);
+  padding: 16px 40px;
+  border-radius: 6px;
   text-decoration: none;
   transition: background 0.2s;
 }
 
-.cta-btn:hover { background: var(--primary-hover); }
+.cta-btn:hover { background: #1E2D3D; }
 
 .cta-note {
   margin-top: 16px;
