@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mycozero — Global Fungal Recurrence Architecture</title>
+<meta name="description" content="A systems-based approach to reducing recurrent fungal infections. Not wellness. Not pharma. Recurrence intelligence.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --primary: #1B6B5A;
+  --primary-hover: #145849;
+  --secondary: #2C3E50;
+  --accent: #D4A853;
+  --bg: #FAFAF7;
+  --surface: #F2F1EC;
+  --border: #D9D6CE;
+  --text: #2A2A28;
+  --text-sec: #6B6B67;
+  --text-faint: #A3A39E;
+  --success: #3D8B37;
+  --warning: #C4841D;
+  --error: #B44040;
+  --heading: 'Instrument Serif', Georgia, serif;
+  --body: 'Inter', -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { font-size: 17px; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+body {
+  font-family: var(--body);
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.65;
+}
+
+.container { max-width: 820px; margin: 0 auto; padding: 0 24px; }
+.container-wide { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+
+/* ===== HERO ===== */
+.hero {
+  padding: 120px 0 80px;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-eyebrow {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-family: var(--heading);
+  font-weight: 400;
+  font-size: 52px;
+  line-height: 1.12;
+  color: var(--secondary);
+  margin-bottom: 24px;
+  max-width: 680px;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--primary);
+}
+
+.hero-sub {
+  font-size: 19px;
+  color: var(--text-sec);
+  max-width: 560px;
+  line-height: 1.6;
+  margin-bottom: 36px;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-number {
+  font-family: var(--mono);
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--secondary);
+}
+
+.stat-label {
+  font-size: 13px;
+  color: var(--text-faint);
+  max-width: 160px;
+  line-height: 1.4;
+}
+
+/* ===== SECTIONS ===== */
+section { padding: 80px 0; border-bottom: 1px solid var(--border); }
+section:last-of-type { border-bottom: none; }
+
+.section-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: var(--heading);
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 1.2;
+  color: var(--secondary);
+  margin-bottom: 20px;
+}
+
+.section-body {
+  font-size: 17px;
+  color: var(--text-sec);
+  line-height: 1.7;
+  max-width: 640px;
+}
+
+.section-body + .section-body { margin-top: 16px; }
+
+.section-body strong { color: var(--text); font-weight: 600; }
+
+.section-body em { font-family: var(--heading); font-style: italic; color: var(--primary); }
+
+/* ===== PROBLEM SECTION ===== */
+.problem-highlight {
+  margin-top: 40px;
+  padding: 28px 32px;
+  background: var(--surface);
+  border-left: 4px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+}
+
+.problem-highlight p {
+  font-family: var(--heading);
+  font-size: 20px;
+  font-style: italic;
+  color: var(--secondary);
+  line-height: 1.5;
+}
+
+.problem-highlight .source {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-faint);
+  margin-top: 12px;
+  font-style: normal;
+}
+
+/* ===== LAYERS GRID ===== */
+.layers-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-top: 48px;
+}
+
+.layer-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+  transition: border-color 0.2s;
+}
+
+.layer-card:hover { border-color: var(--primary); }
+
+.layer-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--text-faint);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.layer-name {
+  font-family: var(--heading);
+  font-size: 19px;
+  color: var(--secondary);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.layer-desc {
+  font-size: 14px;
+  color: var(--text-sec);
+  line-height: 1.55;
+  margin-bottom: 12px;
+}
+
+.layer-grade {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.grade-a { background: #e8f5e4; color: var(--success); }
+.grade-b { background: #fef3e0; color: var(--warning); }
+.grade-c { background: #fde8e8; color: #9e5a5a; }
+
+/* ===== TWO TRACKS ===== */
+.tracks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.track-card {
+  padding: 28px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.track-card h3 {
+  font-family: var(--heading);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--secondary);
+  margin-bottom: 12px;
+}
+
+.track-card p {
+  font-size: 15px;
+  color: var(--text-sec);
+  line-height: 1.6;
+}
+
+.track-tag {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+/* ===== EVIDENCE APPROACH ===== */
+.evidence-grades {
+  display: flex;
+  gap: 16px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+
+.evidence-item {
+  flex: 1;
+  min-width: 180px;
+  padding: 20px;
+  background: var(--surface);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.evidence-letter {
+  font-family: var(--mono);
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.evidence-letter.a { color: var(--success); }
+.evidence-letter.b { color: var(--warning); }
+.evidence-letter.c { color: #9e5a5a; }
+.evidence-letter.d { color: var(--text-faint); }
+
+.evidence-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.evidence-desc {
+  font-size: 13px;
+  color: var(--text-sec);
+  line-height: 1.5;
+}
+
+/* ===== FOUNDER ===== */
+.founder-block {
+  margin-top: 32px;
+  padding: 28px 32px;
+  background: var(--surface);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+.founder-block p {
+  font-size: 16px;
+  color: var(--text-sec);
+  line-height: 1.65;
+}
+
+.founder-block p + p { margin-top: 12px; }
+
+.founder-sig {
+  margin-top: 16px;
+  font-family: var(--heading);
+  font-size: 18px;
+  font-style: italic;
+  color: var(--secondary);
+}
+
+/* ===== CTA ===== */
+.cta-section {
+  text-align: center;
+  padding: 100px 0;
+  border-bottom: none;
+}
+
+.cta-section .section-title { margin-bottom: 16px; }
+
+.cta-sub {
+  font-size: 17px;
+  color: var(--text-sec);
+  margin-bottom: 36px;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-btn {
+  display: inline-block;
+  font-family: var(--body);
+  font-weight: 600;
+  font-size: 16px;
+  color: #fff;
+  background: var(--primary);
+  padding: 14px 36px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.cta-btn:hover { background: var(--primary-hover); }
+
+.cta-note {
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--text-faint);
+}
+
+/* ===== FOOTER ===== */
+footer {
+  padding: 32px 0;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+
+footer p {
+  font-size: 13px;
+  color: var(--text-faint);
+}
+
+footer p + p { margin-top: 4px; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .hero { padding: 80px 0 60px; }
+  .hero h1 { font-size: 36px; }
+  .hero-sub { font-size: 17px; }
+  .hero-stats { gap: 32px; }
+  section { padding: 60px 0; }
+  .section-title { font-size: 28px; }
+  .layers-grid { grid-template-columns: 1fr; }
+  .tracks { grid-template-columns: 1fr; }
+  .evidence-grades { flex-direction: column; }
+  .stat-number { font-size: 24px; }
+}
+
+@media (max-width: 480px) {
+  .hero h1 { font-size: 30px; }
+  .hero-stats { flex-direction: column; gap: 20px; }
+  .problem-highlight { padding: 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+<div class="container">
+  <div class="hero-eyebrow">Recurrence Intelligence Platform</div>
+  <h1>Fungal infections affect 1.7 billion people. <em>We address why they come back.</em></h1>
+  <p class="hero-sub">Mycozero is a systems-based approach to reducing recurrent fungal infections by mapping terrain, immunity, circulation, and environmental control — not just treatment.</p>
+  <div class="hero-stats">
+    <div class="stat">
+      <span class="stat-number">1.7B</span>
+      <span class="stat-label">Global fungal skin disease cases annually</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">10–53%</span>
+      <span class="stat-label">Documented recurrence rates for nail fungus</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">9</span>
+      <span class="stat-label">Evidence-graded recurrence layers</span>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- PROBLEM -->
+<section>
+<div class="container">
+  <div class="section-eyebrow">The Problem</div>
+  <h2 class="section-title">Treatment works. Then the fungus returns.</h2>
+  <p class="section-body">Standard antifungal treatment addresses the pathogen on the surface. It works — for a while. But for hundreds of millions of people, the infection comes back. Repeatedly. Because <strong>nothing in the current system addresses the architecture of recurrence</strong>: the metabolic terrain, the immune gaps, the circulation deficit, the environmental reservoirs, the compliance drop-off.</p>
+  <p class="section-body">Mycozero exists to fill that space — the gap between prescriptions where most recurrence actually happens.</p>
+  <div class="problem-highlight">
+    <p>In April 2025, the WHO published its first-ever reports on fungal infection diagnostics and treatments, naming fungal disease a growing and neglected public health threat.</p>
+    <div class="source">Source: WHO, April 2025 — First-ever reports on tests and treatments for fungal infections</div>
+  </div>
+</div>
+</section>
+
+<!-- TWO TRACKS -->
+<section>
+<div class="container">
+  <div class="section-eyebrow">Two Tracks</div>
+  <h2 class="section-title">Not all fungal recurrence is the same</h2>
+  <p class="section-body">Mycozero separates two biologically distinct recurrence patterns. Mixing them weakens both. Each track has its own evidence base, its own drivers, and its own intervention priorities.</p>
+  <div class="tracks">
+    <div class="track-card">
+      <div class="track-tag">Track A</div>
+      <h3>Dermatophyte Recurrence</h3>
+      <p>Nail fungus, athlete's foot, ringworm. Driven by peripheral circulation, environmental reinfection, and topical penetration failure. The gut-skin axis is secondary.</p>
+    </div>
+    <div class="track-card">
+      <div class="track-tag">Track B</div>
+      <h3>Candida Recurrence</h3>
+      <p>Vaginal thrush, oral candidiasis, intestinal overgrowth. Driven by microbiome disruption, dietary substrate, and systemic immune compromise. Probiotics have stronger evidence here.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- 9 LAYERS -->
+<section>
+<div class="container-wide">
+  <div class="section-eyebrow">The System</div>
+  <h2 class="section-title">Nine layers of recurrence architecture</h2>
+  <p class="section-body">Each layer is independently relevant. Combined, they address the full spectrum of why fungal infections return. Every layer carries a transparent evidence grade.</p>
+  <div class="layers-grid">
+    <div class="layer-card">
+      <div class="layer-num">Layer 01</div>
+      <div class="layer-name">Substrate Management</div>
+      <div class="layer-desc">Reducing dietary fuel for fungal overgrowth, especially refined sugars.</div>
+      <span class="layer-grade grade-b">GRADE B–C</span>
+    </div>
+    <div class="layer-card">
+      <div class="layer-num">Layer 02</div>
+      <div class="layer-name">Internal Antifungal Pressure</div>
+      <div class="layer-desc">Bioactive compounds with preclinical antifungal activity: allicin, caprylic acid.</div>
+      <span class="layer-grade grade-b">GRADE B</span>
+    </div>
+    <div class="layer-card">
+      <div class="layer-num">Layer 03</div>
+      <div class="layer-name">Microbiome Restoration</div>
+      <div class="layer-desc">Gut flora recolonization through fermented foods and targeted probiotics.</div>
+      <span class="layer-grade grade-b">GRADE B–D</span>
+    </div>
+    <div class="layer-card">
+      <div class="layer-num">Layer 04</div>
+      <div class="layer-name">Autonomic &amp; Motility Support</div>
+      <div class="layer-desc">Vagal tone, diaphragmatic breathing, gut peristalsis activation.</div>
+      <span class="layer-grade grade-b">GRADE A–D</span>
+    </div>
+    <div class="layer-card">
+      <div class="layer-num">Layer 05</div>
+      <div class="layer-name">Immune Restoration</div>
+      <div class="layer-desc">Zinc, vitamin D, selenium — supporting the immune arsenal, especially after 55.</div>
+      <span class="layer-grade grade-a">GRADE A–B</span>
+    </div>
+    <div class="layer-card">
+      <div class="layer-num">Layer 06</div>
+      <div class="layer-name">Hepatic Load Management</div>
+      <div class="layer-desc">Liver support during antifungal regimens. Silymarin, metabolic support.</div>
+      <span class="layer-grade grade-b">GRADE B–D</span>
+    </div>
+    <div class="layer-card">
+      <div class="layer-num">Layer 07</div>
+      <div class="layer-name">Terrain &amp; Oxygenation</div>
+      <div class="layer-desc">Peripheral circulation, walking, hydration. Nail fungus is partly a circulation problem.</div>
+      <span class="layer-grade grade-a">GRADE A–C</span>
+    </div>
+    <div class="layer-card">
+      <div class="layer-num">Layer 08</div>
+      <div class="layer-name">Local Surface Treatment</div>
+      <div class="layer-desc">Tea tree oil, iodine, vinegar — with nail preparation for penetration access.</div>
+      <span class="layer-grade grade-b">GRADE B–D</span>
+    </div>
+    <div class="layer-card">
+      <div class="layer-num">Layer 09</div>
+      <div class="layer-name">Reinfection Control</div>
+      <div class="layer-desc">Environmental hygiene: towels, socks, footwear rotation, UV treatment.</div>
+      <span class="layer-grade grade-a">GRADE A</span>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- EVIDENCE APPROACH -->
+<section>
+<div class="container">
+  <div class="section-eyebrow">Evidence First</div>
+  <h2 class="section-title">Every claim is graded. Every grade is visible.</h2>
+  <p class="section-body">Mycozero does not hide behind vague science. Every layer, every intervention, every recommendation carries a transparent evidence grade. This is what separates a recurrence intelligence platform from a wellness blog.</p>
+  <div class="evidence-grades">
+    <div class="evidence-item">
+      <div class="evidence-letter a">A</div>
+      <div class="evidence-label">Strong clinical</div>
+      <div class="evidence-desc">Systematic reviews, RCTs, established clinical guidelines</div>
+    </div>
+    <div class="evidence-item">
+      <div class="evidence-letter b">B</div>
+      <div class="evidence-label">Moderate</div>
+      <div class="evidence-desc">Preclinical data, small trials, emerging clinical evidence</div>
+    </div>
+    <div class="evidence-item">
+      <div class="evidence-letter c">C</div>
+      <div class="evidence-label">Plausible</div>
+      <div class="evidence-desc">Biologically sound mechanism, clinically insufficient evidence</div>
+    </div>
+    <div class="evidence-item">
+      <div class="evidence-letter d">D</div>
+      <div class="evidence-label">Traditional</div>
+      <div class="evidence-desc">Historical practice, limited formal trials, speculative</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- FOUNDER -->
+<section>
+<div class="container">
+  <div class="section-eyebrow">Origin</div>
+  <h2 class="section-title">Built by someone who has the problem</h2>
+  <p class="section-body">Mycozero was not conceived in a lab or a boardroom. It started with a personal, recurring toenail fungal infection that would not resolve despite treatment — across 15 years of living in tropical climates.</p>
+  <div class="founder-block">
+    <p>Steven Alber is a 65-year-old systems architect who has spent decades building layered frameworks for complex problems. Not a physician. Not a supplement seller. A pattern thinker who noticed that the world's most prevalent chronic infection has no systems-level recurrence prevention framework.</p>
+    <p>The same question drove the project: if 1.7 billion people get this every year, and recurrence rates reach 50%, why is the only answer "try again with the same cream"?</p>
+    <div class="founder-sig">— Steven Alber, Founder</div>
+  </div>
+</div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+<div class="container">
+  <h2 class="section-title">Recurrence is not inevitable</h2>
+  <p class="cta-sub">Mycozero is currently in early development. The Evidence Ladder and nine-layer self-assessment are coming soon.</p>
+  <a href="mailto:hello@mycozero.com" class="cta-btn">Get Early Access</a>
+  <p class="cta-note">Health education platform · Not medical advice · Evidence-graded</p>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Mycozero — Global Fungal Recurrence Architecture</p>
+  <p>&copy; 2026 Mycozero. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
